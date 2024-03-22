@@ -16,12 +16,7 @@ func dataSourceSlackChannel() *schema.Resource {
 			"slack_channel_id": {
 				Description: "ID of the channel, provided by Slack.",
 				Type:        schema.TypeString,
-				Optional:    true,
-			},
-			"slack_channel_name": {
-				Description: "Name of this Slack channel.",
-				Type:        schema.TypeString,
-				Optional:    true,
+				Required:    true,
 			},
 			"id": {
 				Description: "FireHydrant internal ID for the Slack channel.",
@@ -37,13 +32,8 @@ func dataFireHydrantSlackChannelRead(ctx context.Context, d *schema.ResourceData
 	firehydrantAPIClient := m.(firehydrant.Client)
 
 	// Get the Slack channel
-	slack_channel_id := d.Get("slack_channel_id").(string)
-	slack_channel_name := d.Get("slack_channel_name").(string)
-	params := firehydrant.SlackChannelParams{
-		ID:   slack_channel_id,
-		Name: slack_channel_name,
-	}
-	slackChannel, err := firehydrantAPIClient.SlackChannels().Get(ctx, params)
+	channelID := d.Get("slack_channel_id").(string)
+	slackChannel, err := firehydrantAPIClient.SlackChannels().Get(ctx, channelID)
 	if err != nil {
 		return diag.FromErr(err)
 	}

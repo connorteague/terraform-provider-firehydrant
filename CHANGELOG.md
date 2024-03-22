@@ -1,8 +1,3 @@
-## Unreleased
-
-ENHANCEMENTS:
-* **Added to Data Source**: `firehydrant_slack_channel`. Now you can pass either the channel id or the channel name to the data source. 
-
 ## 0.6.0
 
 ENHANCEMENTS:

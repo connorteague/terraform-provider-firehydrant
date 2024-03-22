@@ -29,8 +29,7 @@ func TestOfflineSlackChannelsReadMemberID(t *testing.T) {
 		return
 	}
 	r := schema.TestResourceDataRaw(t, dataSourceSlackChannel().Schema, map[string]interface{}{
-		"slack_channel_id":   "C01010101Z",
-		"slack_channel_name": "team-rocket",
+		"slack_channel_id": "C01010101Z",
 	})
 
 	d := dataFireHydrantSlackChannelRead(context.Background(), r, c)
